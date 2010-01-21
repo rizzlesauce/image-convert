@@ -2,5 +2,14 @@
 *.ppm
 *.pgm
 *.ps
+*.eps
+*.dvi
+*.pdf
+
+*.cls
+*.aux
+*.log
 
 *.swp
+
+*.tgz

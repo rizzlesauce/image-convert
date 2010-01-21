@@ -81,10 +81,10 @@ def save(infile, outfile):
             g = Gnuplot.Gnuplot(debug=1)
             g.title('Histogram')
             g('set style data histograms')
-            g.xlabel('Luminosity')
+            g.xlabel('Grayscale Value')
             g.ylabel('Number of pixels')
             g.plot(histData)
-            g.hardcopy('histogram.ps', enhanced=1, color=1)
+            g.hardcopy('histogram.eps', enhanced=1, color=1)
             #raw_input('Please press return to continue...\n')
 
         except IOError:

@@ -1,0 +1,76 @@
+\documentclass[11pt]{article}  % required first line, though can vary;
+                               % this says we will use 11-point font,
+                               % in the "article" format
+
+\usepackage{graphicx}
+\usepackage{verbatim}
+% material beginning with the percent sign is commentary, for human
+% information purposes, not processed by the LaTeX system
+
+% these \setlength etc. lines concern page layout, amount of paragraph
+% indentation etc.; beginners should ignore them (but include them)
+\setlength{\oddsidemargin}{0.0in}
+\setlength{\evensidemargin}{0.0in}
+\setlength{\topmargin}{-0.25in}
+\setlength{\headheight}{0in}
+\setlength{\headsep}{0in}
+\setlength{\textwidth}{6.5in}
+\setlength{\textheight}{9.25in}
+\setlength{\parindent}{0in}
+\setlength{\parskip}{2mm}
+
+\begin{document}  % required; the document starts here
+
+\title{Project 1 Writeup and Paper-Pencil Problems}
+
+\author{Ross Adamson}
+
+\maketitle
+
+\section{Paper-Pencil Problems}
+
+1. A standard music CD holds 74 minutes of stereo (2-channel) audio at 44,100 samples/second and 16 bits/sample/channel. How many megabytes of raw data can such a CD hold?
+
+% the $ delimiter marks the start and end of a mathematical expression
+\[= \frac{mb}{1024kb} \times \frac{kb}{1024byte} \times \frac{byte}{8bit}
+\times \frac{16bit}{channel} \times \frac{2channel}{sample}
+\times \frac{44,100sample}{sec} \times \frac{60sec}{min}
+\times 74min\]
+\[\approx 746.93mb\]
+
+2. Book problems
+
+2.5 How many line pairs per mm will this camera be able to resolve?
+
+\includegraphics[width=.8\textwidth]{diagram}
+
+\[\frac{d}{500mm} = \frac{7mm}{35mm}\]
+\[d = 500mm \times \frac{7mm}{35mm}\]
+\[= 100mm\]
+
+\[\frac{linepear}{mm} = \frac{linepear}{2line}
+\times \frac{1024line}{100mm}\]
+\[= 5.12 \frac{linepears}{mm}\]
+
+\section{Project Writeup}
+
+I used Python and the PIL library for this project.
+
+\begin{figure}
+\centering
+\includegraphics[scale=.8]{parrots}
+\caption{Color image converted to grayscale}
+\label{grayscale}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[angle=-90, width=.8\textwidth]{histogram}
+\caption{Histogram of grayscale distribution}
+\label{histogram}
+\end{figure}
+
+% a blank line means a new paragraph
+
+\end{document}  % required; the document ends here
+
