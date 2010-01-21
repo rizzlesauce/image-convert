@@ -18,32 +18,37 @@ openfile = '' # full pathname: dir(abs) + root + ext
 indir = ''
 outdir = ''
 def getinfilename():
-    global openfile, indir
-    ftypes=(('Gif Images', '*.gif'),
+    global openfile, indir, inputImagePath
+    ftypes=(('Portable Pixel Map', '*.ppm'),
+            ('Portable Gray Map', '*.pgm'),
+            ('Gif Images', '*.gif'),
             ('Jpeg Images', '*.jpg'),
             ('Png Images', '*.png'),
             ('Tiff Images', '*.tif'),
             ('Bitmap Images', '*.bmp'),
-            ('PPM', '*.ppm'),
-            ('PGM', '*.pgm'),
             ("All files", "*"))
     if indir:
         openfile = askopenfilename(initialdir=indir,
                                    filetypes=ftypes)
     else:
         openfile = askopenfilename(filetypes=ftypes)
+
     if openfile:
         indir = os.path.dirname(openfile)
+        inputImagePath.config(text=openfile)
 
 def getoutdirname():
-    global indir, outdir
+    global indir, outdir, outputImagePath
     if openfile:
         indir = os.path.dirname(openfile)
         outfile = asksaveasfilename(initialdir=indir,
                                     initialfile='foo')
     else:
         outfile = asksaveasfilename(initialfile='foo')
-    outdir = os.path.dirname(outfile)
+
+    if outfile:
+        outdir = os.path.dirname(outfile)
+        outputImagePath.config(text=(outdir + '/'))
 
 def save(infile, outfile):
     if infile != outfile:
@@ -91,6 +96,10 @@ Button(topframe,
        text='Select image to convert',
        command=getinfilename).pack(side=TOP, pady=4)
 
+Label(topframe, text="Input path:").pack(pady=2)
+inputImagePath = Label(topframe, text="")
+inputImagePath.pack(pady=2)
+
 multitext = """Convert all image files
 (of this format) in this folder?"""
 var = IntVar()
@@ -99,8 +108,11 @@ chk = Checkbutton(topframe,
                   variable=var).pack(pady=2)
 Button(topframe,
        text='Select save location',
-       command=getoutdirname).pack(side=BOTTOM, pady=4)
+       command=getoutdirname).pack(pady=4)
 
+Label(topframe, text="Output directory:").pack(pady=2)
+outputImagePath = Label(topframe, text="")
+outputImagePath.pack(pady=2)
 
 Label(midframe, text="New Format:").pack(side=LEFT)
 frmt = StringVar()
