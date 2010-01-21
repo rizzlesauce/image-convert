@@ -65,9 +65,11 @@ def save(infile, outfile):
 
             for i in range(len(imgData)):
                 grayValue = round(pRed * imgData[i][0] + pGreen * imgData[i][1] + pBlue * imgData[i][2])
+                """
                 if grayValue > 255:
                     print 'grayvalue too high: ' + grayValue
                     grayValue = 255
+                """
                 grayData[i] = grayValue
  
             newImage = Image.new('L', img.size)
@@ -83,7 +85,6 @@ def save(infile, outfile):
             g.ylabel('Number of pixels')
             g.plot(histData)
             g.hardcopy('histogram.ps', enhanced=1, color=1)
-
             #raw_input('Please press return to continue...\n')
 
         except IOError:
