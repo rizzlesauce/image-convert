@@ -4,6 +4,7 @@
 
 \usepackage{graphicx}
 \usepackage{verbatim}
+
 % material beginning with the percent sign is commentary, for human
 % information purposes, not processed by the LaTeX system
 
@@ -51,6 +52,102 @@
 \[\frac{linepear}{mm} = \frac{linepear}{2line}
 \times \frac{1024line}{100mm}\]
 \[= 5.12 \frac{linepears}{mm}\]
+
+2.10 How many bits would it take to store a 2-hour HDTV movie?
+
+\[l = 1125\]
+\[\frac{16}{9} = \frac{col}{l}\]
+\[col = 1125 \times \frac{16}{9} = 2000\]
+\[px = col \times l = 1125 \times 2000 = 2,250,000px\]
+
+Every image has 2,250,000 pixels. Half those pixels are required
+every 1/60th of a second (1,125,000 pixels). So, total pixels required
+for an hour is:
+
+\[\frac{1,125,000px}{frame} \times \frac{60frame}{sec} \times
+\frac{60sec}{min} \times \frac{60min}{hr}\]
+\[= 243 \times 10^9px\]
+
+For two hours that's $486 \times 10^9$ pixels. Every pixel has 24 bits, 
+so the number of bits required for a 2 hour
+HDTV movie is $11,664 \times 10^9$ bits.
+
+2.19 Show that an operator that computes the median of a subimage
+area, S, is nonlinear.
+
+Let med be an operator that computes the median of a subimage area. Assume, 
+in order to form a contradiction, that med is linear. Consider the 
+following two images
+
+$
+f_1 =
+\left[ {\begin{array}{cc}
+ 4 & 2  \\
+ 1 & 3  \\
+ \end{array} } \right]
+$ and $
+f_2 =
+\left[ {\begin{array}{cc}
+ 2 & 5  \\
+ 4 & 3  \\
+ \end{array} } \right]
+$
+
+and suppose that we let $a_1 = 1$ and $a_2 = -1$. To test for linearity,
+we start with the left side of Eq.(2.6-2):
+
+\[
+med
+\left\{ {
+(1)
+\left[ {\begin{array}{cc}
+ 4 & 2  \\
+ 1 & 3  \\
+ \end{array} } \right]
++
+(-1)
+\left[ {\begin{array}{cc}
+ 2 & 5  \\
+ 4 & 3  \\
+ \end{array} } \right] }
+\right\}
+=
+med
+\left\{ {
+\left[ {\begin{array}{cc}
+ 2 & -3  \\
+ -3 & 0  \\
+ \end{array} } \right] }
+\right\}
+\]
+\[= -0.5\]
+
+Working next with the right side, we obtain
+
+\[
+(1)
+med
+\left\{ {
+    \left[ {\begin{array}{cc}
+     4 & 2  \\
+     1 & 3  \\
+     \end{array} } \right]
+} \right\}
++
+(-1)
+med
+\left\{ {
+    \left[ {\begin{array}{cc}
+     2 & 5  \\
+     4 & 3  \\
+     \end{array} } \right]
+} \right\}
+= 2.5 + (-1)3.5
+\]
+\[= -1\]
+
+The left and right sides of the equation are not equal in this case, so
+we have proved that in general the med operator is nonlinear.
 
 \section{Project Writeup}
 
