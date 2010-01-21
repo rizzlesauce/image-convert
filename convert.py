@@ -9,7 +9,7 @@ Uses workaround: askdirectory() does not allow choosing
 a new dir, so asksaveasfilename() is used instead, and
 the filename is discarded, keeping just the directory.
 """
-import os, os.path, string, sys
+import os, os.path, string, sys, Gnuplot
 from Tkinter import *
 from tkFileDialog import *
 import Image
@@ -65,11 +65,27 @@ def save(infile, outfile):
 
             for i in range(len(imgData)):
                 grayValue = round(pRed * imgData[i][0] + pGreen * imgData[i][1] + pBlue * imgData[i][2])
+                if grayValue > 255:
+                    print 'grayvalue too high: ' + grayValue
+                    grayValue = 255
                 grayData[i] = grayValue
  
             newImage = Image.new('L', img.size)
             newImage.putdata(grayData)
             newImage.save(outfile)
+
+            # get histogram info
+            histData = newImage.histogram()
+            g = Gnuplot.Gnuplot(debug=1)
+            g.title('Histogram')
+            g('set style data histograms')
+            g.xlabel('Luminosity')
+            g.ylabel('Number of pixels')
+            g.plot(histData)
+            g.hardcopy('histogram.ps', enhanced=1, color=1)
+
+            #raw_input('Please press return to continue...\n')
+
         except IOError:
             print "Cannot convert", infile
 
