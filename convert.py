@@ -53,7 +53,23 @@ def getoutdirname():
 def save(infile, outfile):
     if infile != outfile:
         try:
-            Image.open(infile).save(outfile)
+            img = Image.open(infile)
+
+            # convert to grayscale
+            imgData = img.getdata()
+
+            grayData = [0]*len(imgData)
+            pRed = 0.299
+            pGreen = 0.587
+            pBlue = 0.114
+
+            for i in range(len(imgData)):
+                grayValue = round(pRed * imgData[i][0] + pGreen * imgData[i][1] + pBlue * imgData[i][2])
+                grayData[i] = grayValue
+ 
+            newImage = Image.new('L', img.size)
+            newImage.putdata(grayData)
+            newImage.save(outfile)
         except IOError:
             print "Cannot convert", infile
 
