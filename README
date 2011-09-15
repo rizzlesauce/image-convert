@@ -1,0 +1,6 @@
+author: Ross Adamson
+
+Program for converting image files from one format
+to another. Will convert one file at a time or all
+files (of a selected format) in a directory at once.
+Converted files have same basename as original files.
